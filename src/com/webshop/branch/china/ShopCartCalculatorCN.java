@@ -86,7 +86,8 @@ public class ShopCartCalculatorCN implements ShopCartCalculator {
 				total = total.add(getShippingFee()).subtract(totalDeductionByBundleDiscount).subtract(totalDeductionByVoucher);
 			else 
 				total = total.subtract(totalDeductionByBundleDiscount).subtract(totalDeductionByVoucher).add(getShippingFee());
-		}
+		} else
+			total = total.subtract(totalDeductionByBundleDiscount).subtract(totalDeductionByVoucher);
 		
 		total = total.add( total.multiply(getTax()) );
 		

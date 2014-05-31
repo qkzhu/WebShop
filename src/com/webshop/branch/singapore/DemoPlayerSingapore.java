@@ -43,7 +43,7 @@ public class DemoPlayerSingapore implements DemoPlayer {
 		System.out.println(String.format(format, "SubTotal", subtotal.toString()));
 		System.out.println(String.format(format, "Shipping Fee", shippingFee.toString()));
 				
-		String vouchersIHave = "voucherKey001";
+		String vouchersIHave = "voucherCodeSG01_3";
 		BigDecimal groundTotal = cal.getGroundTotal(myCart, vouchersIHave);
 		System.out.println(String.format(format, "GroundTotal", groundTotal.toString()));
 		
@@ -67,10 +67,12 @@ public class DemoPlayerSingapore implements DemoPlayer {
 	// create a voucher list for Singapore branch for demo
 	private static List<Voucher> createVoucherListSG() {
 		ArrayList<Voucher> vouchers = new ArrayList<Voucher>();
+		String voucherKeySG1 = "SG01_";
+		String voucherKeySG2 = "SG02_";
 		// 15% Discount When Meet $200.00
-		vouchers.add( new VoucherSG(createDate("01/01/2015"), new BigDecimal("0.15"), new BigDecimal("200.00"), VoucherSG.VOUCHER_VALUE_PERCENTAGE, true) );
+		vouchers.add( new VoucherSG(voucherKeySG1, createDate("01/01/2015"), new BigDecimal("0.15"), new BigDecimal("200.00"), VoucherSG.VOUCHER_VALUE_PERCENTAGE, true) );
 		// instant $20 off
-		vouchers.add( new VoucherSG(createDate("31/07/2014"), new BigDecimal("0.15"), new BigDecimal("200.00"), VoucherSG.VOUCHER_VALUE_PERCENTAGE, true) );
+		vouchers.add( new VoucherSG(voucherKeySG2, createDate("31/07/2014"), new BigDecimal("20.00"), new BigDecimal("100.00"), VoucherSG.VOUCHER_VALUE_FIX, true) );
 		return vouchers;
 	}
 	

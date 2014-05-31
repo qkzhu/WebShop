@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import com.webshop.branch.singapore.VoucherSG;
+import com.webshop.branch.china.VoucherCN;
 import com.webshop.promotions.BundleDiscount;
 import com.webshop.promotions.Voucher;
 import com.webshop.tools.DemoPlayer;
@@ -29,7 +29,7 @@ public void play() {
 
 		// prepare claculator
 		ShopCartCalculatorCN cal = new ShopCartCalculatorCN();
-		cal.init(createVoucherListSG(), createBundleDiscountList(), shippingFee, tax);
+		cal.init(createVoucherListCN(), createBundleDiscountList(), shippingFee, tax);
 				
 				
 		// calculator starts
@@ -45,7 +45,7 @@ public void play() {
 			System.out.println(String.format(format, "Shipping Fee", shippingFee.toString()));
 		else System.out.println(String.format(format, "Shipping Fee", new BigDecimal("0.00")));
 				
-		String vouchersIHave = "voucherKey001";
+		String vouchersIHave = "voucherCodeCN01";
 		BigDecimal groundTotal = cal.getGroundTotal(myCart, vouchersIHave);
 		System.out.println(String.format(format, "GroundTotal", groundTotal.toString()));
 		
@@ -67,12 +67,14 @@ public void play() {
 		
 		
 	// create a voucher list for Singapore branch for demo
-	private static List<Voucher> createVoucherListSG() {
+	private static List<Voucher> createVoucherListCN() {
 		ArrayList<Voucher> vouchers = new ArrayList<Voucher>();
+		String voucherCodeKey01 = "CN01";
+		String voucherCodeKey02 = "CN02";
 		// 15% Discount When Meet $200.00
-		vouchers.add( new VoucherSG(createDate("01/01/2015"), new BigDecimal("0.15"), new BigDecimal("200.00"), VoucherSG.VOUCHER_VALUE_PERCENTAGE, true) );
+		vouchers.add( new VoucherCN(voucherCodeKey01, createDate("01/01/2015"), new BigDecimal("0.15"), new BigDecimal("200.00"), VoucherCN.VOUCHER_VALUE_PERCENTAGE, true) );
 		// instant $20 off
-		vouchers.add( new VoucherSG(createDate("31/07/2014"), new BigDecimal("0.15"), new BigDecimal("200.00"), VoucherSG.VOUCHER_VALUE_PERCENTAGE, true) );
+		vouchers.add( new VoucherCN(voucherCodeKey02, createDate("31/07/2014"), new BigDecimal("20.00"), new BigDecimal("100.00"), VoucherCN.VOUCHER_VALUE_FIX, true) );
 		return vouchers;
 	}
 	

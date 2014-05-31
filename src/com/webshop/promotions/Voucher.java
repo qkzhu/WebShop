@@ -16,9 +16,8 @@ public abstract class Voucher {
 	
 	/**
 	 * Generator a valid voucher code base on customized code generating algorithm.
-	 * @return: a valid voucher code.
 	 */
-	public abstract String voucherCodeGenerator();
+	public abstract void voucherCodeGenerator(String key);
 
 	
 	/**
@@ -32,15 +31,17 @@ public abstract class Voucher {
 	
 	/**
 	 * Construct a voucher
-	 * @param key
+	 * 
+	 * @param voucherCodeKey
 	 * @param dateExpired
 	 * @param voucherValue
 	 * @param minPurchase
 	 * @param voucherValueType
 	 * @param inlcudeShippingFee
 	 */
-	public Voucher(Date dateExpired, BigDecimal voucherValue, BigDecimal minPurchase, 
+	public Voucher(String voucherCodeKey, Date dateExpired, BigDecimal voucherValue, BigDecimal minPurchase, 
 			int voucherValueType, boolean inlcudeShippingFee) {
+		voucherCodeGenerator(voucherCodeKey);
 		setDateExpired(dateExpired);
 		setVoucherValue(voucherValue);
 		setMinPurchase(minPurchase);
